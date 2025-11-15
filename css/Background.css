@@ -1,0 +1,27 @@
+div.UP {
+        display: flex;
+        align-items: center;
+        color: rgb(5, 5, 5);
+        outline-style: solid;
+}
+
+.upShow {
+        color: rgb(11, 11, 21);
+        align-items: center;
+}
+
+div.Middle {
+
+        video::-webkit-media-controls,
+        video::-moz-media-controls,
+        video::-ms-media-controls,
+        video::part(media-controls) {
+                display: none !important;
+        }
+        video::-webkit-media-controls-enclosure {
+                display: none !important;
+        }
+/* 上面是强制隐藏控件的代码 */
+        text-align: center;
+        margin-top: 100px;
+}

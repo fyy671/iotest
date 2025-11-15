@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        测试网站（例）
+    </title>
+    <script>
+        function search() {
+            var description = document.getElementById("description").value || "";
+            if(description=="") return;
+            const workContainer = document.getElementById("work");
+            fetch(`http://localhost:3000/search?text=${description}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    workContainer.innerHTML = ""; // 清空之前的内容
+                    // 逐个添加数据（用文本节点包裹值）
+                    workContainer.appendChild(document.createTextNode("你查找的内容是:" + description));
+                    workContainer.appendChild(document.createElement("br"));
+                    workContainer.appendChild(document.createElement("br"));
+                    if (data.code === 200) {
+                        workContainer.innerHTML = "查找成功<br><br>";
+                        //显示查找结果
+                        if (data.count > 0) {
+                            data.data.forEach((item, index) => {
+                                workContainer.appendChild(document.createTextNode(`=== 第 ${index + 1} 条记录 ===`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createTextNode(`bug 描述：${item.description || "无"}`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createTextNode(`截图文件名：${item.image || "未上传"}`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createTextNode(`复现步骤：${item.text || "无"}`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createTextNode(`是否必现：${item.type || "未选择"}`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createTextNode(`日志文件名：${item.word || "未上传"}`));
+                                workContainer.appendChild(document.createElement("br"));
+                                workContainer.appendChild(document.createElement("br"));
+                            });
+                        }
+                        else {
+                            workContainer.innerHTML = "查找失败<br><br>";
+                        }
+                        const newButton = document.createElement("button");
+                        newButton.textContent = "点击继续查找";
+                        // 5. 给新按钮绑定点击事件（例如跳转到首页）
+                        newButton.onclick = function () {
+                            // 这里可以写按钮的功能，比如跳转到首页
+                            window.location.href = "ck.html"; // 替换为你的首页地址
+                        };
+                        workContainer.appendChild(newButton);
+                        workContainer.appendChild(document.createElement("br")); // 换行
+                    }});
+        }
+        function returnMain()
+        {
+                   window.location.href = "index.html"; 
+        }
+    </script>
+</head>
+
+<body>
+    <div id="work">
+        <h1>
+            这里查看bug
+        </h1>
+        <p>
+            <button type="button" style="height:50px; width:100px" onclick="returnMain()">返回主界面</button>
+        </p>
+        <p>
+            这里可以输入bug描述进行查询
+            <br>
+            <kbd>请输入</kbd>
+            <input type="text" name="name" id="description">
+        </p>
+        <p style="text-align:right">
+            点击查看
+            <button type="button" style="height:50px; width:50px" onclick="search()">查看</button>
+        </p>
+    </div>
+</body>
+
+</html>

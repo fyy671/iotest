@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        测试网站（例）
+    </title>
+    <link rel="stylesheet" href="css/Background.css">
+</head>
+<script>
+    function goTj() {
+        href = "http://127.0.0.1:5500/tj.html";
+        window.location.href = href;
+    }
+    function goCk() {
+        href = "http://127.0.0.1:5500/ck.html";
+        window.location.href = href;
+    }
+
+</script>
+
+<body>
+    <h1 style="font-family:arial; color:red; font-size:30px">
+        这是一个用于提交bug的测试用网站
+    </h1>
+    <div class="UP">
+        <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            <img src="picture/yfs.png" alt="图片丢失" height="50" width="50" usemap="#yf">
+            <map name="yf">
+                <area shape="rect" coords="0,0,300,300" href="https://www.mihoyo.com/" target="_blank">
+            </map>
+        </span>
+        <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="upShow">
+            这里可以提交<b>bug</b>&nbsp;&nbsp;&nbsp;
+            <button onclick="goTj()">提交</button>
+        </span>
+        <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="upShow">
+            这里可以查看<strong>bug</strong>&nbsp;&nbsp;&nbsp;
+            <button onclick="goCk()">查看</button>
+
+        </span>
+    </div>
+    <div class="Middle">
+        <video autoplay loop width=100% height=auto src="picture/saber.mp4" controls></video>
+    </div>
+    <p style="text-align:right">
+        made by:fyy
+    </p>
+</body>
+
+</html>

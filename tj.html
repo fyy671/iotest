@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        测试网站（例）
+    </title>
+    <script>
+        function work() {
+            var input0 = document.getElementById("input0").value || "没有填写";
+            var input1 = document.getElementById("input1").files[0]?.name || "未上传";
+            var input2 = document.getElementById("input2").value || "没有填写";
+            var input3 = document.querySelector('input[name="type"]:checked')?.value || "未选择";// 选中的单选框
+            var input4 = document.getElementById("input4").files[0]?.name || "未上传";
+            const workContainer = document.getElementById("work");
+            fetch('http://localhost:3000/insert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    description: input0,
+                    image: input1,  // 键名改为 image（对应后端解构的 image）
+                    text: input2,   // 键名改为 text（对应后端解构的 text）
+                    type: input3,   // 键名改为 type（对应后端解构的 type）
+                    word: input4    // 键名改为 word（对应后端解构的 word）
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        workContainer.innerHTML = "提交成功<br><br>";
+                    } else {
+                        workContainer.innerHTML = "提交失败<br><br>";
+                    }
+                    const newButton = document.createElement("button");
+                    newButton.textContent = "点击继续提交";
+                    // 5. 给新按钮绑定点击事件（例如跳转到首页）
+                    newButton.onclick = function () {
+                        // 这里可以写按钮的功能，比如跳转到首页
+                        window.location.href = "tj.html"; // 替换为你的首页地址
+                    };
+                    workContainer.appendChild(newButton);
+                    workContainer.appendChild(document.createElement("br")); // 换行
+
+                    // 逐个添加数据（用文本节点包裹值）
+                    workContainer.appendChild(document.createTextNode("bug描述：" + input0));
+                    workContainer.appendChild(document.createElement("br"));
+                    workContainer.appendChild(document.createElement("br"));
+
+                    // 1. 截图文件名
+                    workContainer.appendChild(document.createTextNode("bug内容(截图)：" + input1));
+                    workContainer.appendChild(document.createElement("br"));
+                    workContainer.appendChild(document.createElement("br"));
+
+                    // 2. 复现步骤
+                    workContainer.appendChild(document.createTextNode("复现步骤：" + input2));
+                    workContainer.appendChild(document.createElement("br"));
+                    workContainer.appendChild(document.createElement("br"));
+
+                    // 3. 必现/偶现
+                    workContainer.appendChild(document.createTextNode("bug是否必现：" + input3));
+                    workContainer.appendChild(document.createElement("br"));
+                    workContainer.appendChild(document.createElement("br"));
+
+                    // 4. 日志文件名
+                    workContainer.appendChild(document.createTextNode("日志：" + input4));
+                    workContainer.appendChild(document.createElement("br"));
+                });
+        }        function returnMain()
+        {
+                   window.location.href = "index.html"; 
+        }
+    </script>
+</head>
+
+<body>
+    <div id="work">
+        <h1>
+            这里提交bug
+        </h1>
+        <p>
+            <button type="button" style="height:50px; width:100px" onclick="returnMain()">返回主界面</button>
+        </p>
+        <p>
+            bug描述
+            <br><input type="text" name="description" size="50" id="input0">
+        </p>
+        <p>
+            bug内容(只能上传截图)
+            <br><input type="file" name="image" accept="image/*" id="input1">
+        </p>
+        <p>
+            bug复现步骤
+            <br><input type="text" name="text" size="100" id="input2">
+        </p>
+        <p>
+            bug是否必现
+            <br><input type="radio" name="type" value="必现" id="radio-must">
+            <label for="必现">必现</label>
+            <br><input type="radio" name="type" value="偶现" id="radio-sometimes">
+            <label for="偶现">偶现</label>
+        </p>
+        <p>
+            日志
+            <br><input type="file" name="word" accept=".word" id="input4">
+        </p>
+        <p style="text-align:right">
+            点击提交
+            <button type="button" style="height:50px; width:50px" onclick="work()">提交</button>
+        </p>
+    </div>
+</body>
+
+</html>
