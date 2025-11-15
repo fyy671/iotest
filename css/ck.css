@@ -1,0 +1,20 @@
+.UpTitle {
+    text-align: center;
+    border-bottom-style: solid;
+}
+
+.UpButton {
+    border-style: solid;
+    border-color: aquamarine;
+    border-width: 5px;
+}
+div.Middle {
+    border-style: solid;
+    border-color: rgb(133, 186, 67);
+    border-width: 2px;
+}
+.down{
+     border-bottom-style: solid;
+    border-color: rgb(133, 186, 67);
+    border-width: 2px;
+}

@@ -6,6 +6,7 @@
     <title>
         测试网站（例）
     </title>
+    <link rel="stylesheet" href="css/tj.css">
     <script>
         function work() {
             var input0 = document.getElementById("input0").value || "没有填写";
@@ -68,47 +69,60 @@
                     workContainer.appendChild(document.createTextNode("日志：" + input4));
                     workContainer.appendChild(document.createElement("br"));
                 });
-        }        function returnMain()
-        {
-                   window.location.href = "index.html"; 
+        } function returnMain() {
+            window.location.href = "index.html";
+        }
+        function goCk() {
+            href = "http://127.0.0.1:5500/ck.html";
+            window.location.href = href;
         }
     </script>
 </head>
 
 <body>
     <div id="work">
-        <h1>
+        <h1 class="UpTitle">
             这里提交bug
         </h1>
-        <p>
-            <button type="button" style="height:50px; width:100px" onclick="returnMain()">返回主界面</button>
+        <p style="text-align:center">
+            <button class="UpButton" type="button" style="height:50px; width:100px"
+                onclick="returnMain()">返回主界面</button>
+            <button class="UpButton" type="button" style="height:50px; width:100px" onclick="goCk()">前往查看</button>
         </p>
-        <p>
-            bug描述
-            <br><input type="text" name="description" size="50" id="input0">
-        </p>
-        <p>
-            bug内容(只能上传截图)
-            <br><input type="file" name="image" accept="image/*" id="input1">
-        </p>
-        <p>
-            bug复现步骤
-            <br><input type="text" name="text" size="100" id="input2">
-        </p>
-        <p>
-            bug是否必现
-            <br><input type="radio" name="type" value="必现" id="radio-must">
-            <label for="必现">必现</label>
-            <br><input type="radio" name="type" value="偶现" id="radio-sometimes">
-            <label for="偶现">偶现</label>
-        </p>
-        <p>
-            日志
-            <br><input type="file" name="word" accept=".word" id="input4">
-        </p>
-        <p style="text-align:right">
+        <div class="Middle">
+            <p>
+                bug描述
+                <br><input type="text" name="description" size="50" id="input0">
+            </p>
+            <p>
+                bug内容(只能上传截图)
+                <br><input type="file" name="image" accept="image/*" id="input1">
+            </p>
+            <p>
+                bug复现步骤
+                <br><input type="text" name="text" size="100" id="input2">
+            </p>
+            <p>
+                bug是否必现
+                <br><input type="radio" name="type" value="必现" id="radio-must">
+                <label for="必现">必现</label>
+                <br><input type="radio" name="type" value="偶现" id="radio-sometimes">
+                <label for="偶现">偶现</label>
+            </p>
+            <p>
+                日志
+                <br><input type="file" name="word" accept=".word" id="input4">
+            </p>
+        </div>
+        <p style="text-align:right" class="down">
             点击提交
             <button type="button" style="height:50px; width:50px" onclick="work()">提交</button>
+        </p>
+        <p text-align="center" class="down">
+            谢谢你的提交
+        </p>
+        <p>
+            <img src="picture/dd.png" alt="图片丢失" width="100%" height="auto">
         </p>
     </div>
 </body>

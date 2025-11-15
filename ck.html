@@ -6,10 +6,11 @@
     <title>
         测试网站（例）
     </title>
+    <link rel="stylesheet" href="css/ck.css">
     <script>
         function search() {
             var description = document.getElementById("description").value || "";
-            if(description=="") return;
+            if (description == "") return;
             const workContainer = document.getElementById("work");
             fetch(`http://localhost:3000/search?text=${description}`, {
                 method: 'GET',
@@ -56,32 +57,42 @@
                         };
                         workContainer.appendChild(newButton);
                         workContainer.appendChild(document.createElement("br")); // 换行
-                    }});
+                    }
+                });
         }
-        function returnMain()
-        {
-                   window.location.href = "index.html"; 
+        function returnMain() {
+            window.location.href = "index.html";
+        }
+        function goTj() {
+            href = "http://127.0.0.1:5500/tj.html";
+            window.location.href = href;
         }
     </script>
 </head>
 
 <body>
     <div id="work">
-        <h1>
+        <h1 class="UpTitle">
             这里查看bug
         </h1>
-        <p>
-            <button type="button" style="height:50px; width:100px" onclick="returnMain()">返回主界面</button>
+        <p  style="text-align:center">
+            <button class="UpButton" type="button" style="height:50px; width:100px" onclick="returnMain()">返回主界面</button>
+            <button class="UpButton" type="button" style="height:50px; width:100px" onclick="goTj()">前往提交</button>
         </p>
+        <div class="Middle">
         <p>
             这里可以输入bug描述进行查询
             <br>
             <kbd>请输入</kbd>
             <input type="text" name="name" id="description">
         </p>
-        <p style="text-align:right">
+        </div>
+        <p style="text-align:right" class="down">
             点击查看
             <button type="button" style="height:50px; width:50px" onclick="search()">查看</button>
+             <p>
+            <img src="picture/dd.png" alt="图片丢失" width="100%" height="auto">
+        </p>
         </p>
     </div>
 </body>
